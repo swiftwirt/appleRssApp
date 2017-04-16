@@ -8,20 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		D0501C221EA3EC5F00058B62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0501C211EA3EC5F00058B62 /* AppDelegate.swift */; };
-		D0501C241EA3EC5F00058B62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0501C231EA3EC5F00058B62 /* ViewController.swift */; };
-		D0501C271EA3EC6000058B62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0501C251EA3EC6000058B62 /* Main.storyboard */; };
 		D0501C291EA3EC6000058B62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0501C281EA3EC6000058B62 /* Assets.xcassets */; };
 		D0501C2C1EA3EC6000058B62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0501C2A1EA3EC6000058B62 /* LaunchScreen.storyboard */; };
+		D0501C3A1EA3ED8C00058B62 /* ARAApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0501C391EA3ED8C00058B62 /* ARAApiService.swift */; };
+		D0501C3C1EA3EDD400058B62 /* ARARestApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0501C3B1EA3EDD400058B62 /* ARARestApiService.swift */; };
+		D0501C3F1EA3EFE200058B62 /* UIImageView+ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0501C3E1EA3EFE200058B62 /* UIImageView+ImageDownloader.swift */; };
+		D0501C411EA3FBB600058B62 /* ARALibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0501C401EA3FBB600058B62 /* ARALibraryService.swift */; };
+		D0501C431EA3FC9100058B62 /* ARAXmlParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0501C421EA3FC9100058B62 /* ARAXmlParsingService.swift */; };
+		D0501C471EA3FD7200058B62 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0501C451EA3FD7200058B62 /* Model.xcdatamodeld */; };
+		D0501C4A1EA3FE6C00058B62 /* RssItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0501C481EA3FE6C00058B62 /* RssItem+CoreDataClass.swift */; };
+		D0501C4B1EA3FE6C00058B62 /* RssItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0501C491EA3FE6C00058B62 /* RssItem+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D0501C1E1EA3EC5F00058B62 /* AppleRssApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleRssApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0501C211EA3EC5F00058B62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D0501C231EA3EC5F00058B62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D0501C261EA3EC6000058B62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0501C281EA3EC6000058B62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0501C2B1EA3EC6000058B62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0501C2D1EA3EC6000058B62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0501C391EA3ED8C00058B62 /* ARAApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAApiService.swift; sourceTree = "<group>"; };
+		D0501C3B1EA3EDD400058B62 /* ARARestApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARARestApiService.swift; sourceTree = "<group>"; };
+		D0501C3E1EA3EFE200058B62 /* UIImageView+ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageDownloader.swift"; sourceTree = "<group>"; };
+		D0501C401EA3FBB600058B62 /* ARALibraryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARALibraryService.swift; sourceTree = "<group>"; };
+		D0501C421EA3FC9100058B62 /* ARAXmlParsingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAXmlParsingService.swift; sourceTree = "<group>"; };
+		D0501C461EA3FD7200058B62 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		D0501C481EA3FE6C00058B62 /* RssItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RssItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D0501C491EA3FE6C00058B62 /* RssItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RssItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +66,68 @@
 		D0501C201EA3EC5F00058B62 /* AppleRssApp */ = {
 			isa = PBXGroup;
 			children = (
-				D0501C211EA3EC5F00058B62 /* AppDelegate.swift */,
-				D0501C231EA3EC5F00058B62 /* ViewController.swift */,
-				D0501C251EA3EC6000058B62 /* Main.storyboard */,
+				D0501C441EA3FD4D00058B62 /* Core Data */,
+				D0501C3D1EA3EFC000058B62 /* Extensions */,
+				D0501C381EA3ED1000058B62 /* Presentation */,
+				D0501C371EA3ED0400058B62 /* Services */,
+				D0501C351EA3ECE900058B62 /* Application Layer */,
+				D0501C341EA3ECD700058B62 /* Supporting Files */,
+			);
+			path = AppleRssApp;
+			sourceTree = "<group>";
+		};
+		D0501C341EA3ECD700058B62 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				D0501C281EA3EC6000058B62 /* Assets.xcassets */,
 				D0501C2A1EA3EC6000058B62 /* LaunchScreen.storyboard */,
 				D0501C2D1EA3EC6000058B62 /* Info.plist */,
 			);
-			path = AppleRssApp;
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D0501C351EA3ECE900058B62 /* Application Layer */ = {
+			isa = PBXGroup;
+			children = (
+				D0501C211EA3EC5F00058B62 /* AppDelegate.swift */,
+			);
+			name = "Application Layer";
+			sourceTree = "<group>";
+		};
+		D0501C371EA3ED0400058B62 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D0501C391EA3ED8C00058B62 /* ARAApiService.swift */,
+				D0501C3B1EA3EDD400058B62 /* ARARestApiService.swift */,
+				D0501C401EA3FBB600058B62 /* ARALibraryService.swift */,
+				D0501C421EA3FC9100058B62 /* ARAXmlParsingService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		D0501C381EA3ED1000058B62 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Presentation;
+			sourceTree = "<group>";
+		};
+		D0501C3D1EA3EFC000058B62 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D0501C3E1EA3EFE200058B62 /* UIImageView+ImageDownloader.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		D0501C441EA3FD4D00058B62 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				D0501C481EA3FE6C00058B62 /* RssItem+CoreDataClass.swift */,
+				D0501C491EA3FE6C00058B62 /* RssItem+CoreDataProperties.swift */,
+				D0501C451EA3FD7200058B62 /* Model.xcdatamodeld */,
+			);
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,7 +191,6 @@
 			files = (
 				D0501C2C1EA3EC6000058B62 /* LaunchScreen.storyboard in Resources */,
 				D0501C291EA3EC6000058B62 /* Assets.xcassets in Resources */,
-				D0501C271EA3EC6000058B62 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,22 +201,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0501C241EA3EC5F00058B62 /* ViewController.swift in Sources */,
 				D0501C221EA3EC5F00058B62 /* AppDelegate.swift in Sources */,
+				D0501C4A1EA3FE6C00058B62 /* RssItem+CoreDataClass.swift in Sources */,
+				D0501C4B1EA3FE6C00058B62 /* RssItem+CoreDataProperties.swift in Sources */,
+				D0501C3C1EA3EDD400058B62 /* ARARestApiService.swift in Sources */,
+				D0501C411EA3FBB600058B62 /* ARALibraryService.swift in Sources */,
+				D0501C471EA3FD7200058B62 /* Model.xcdatamodeld in Sources */,
+				D0501C431EA3FC9100058B62 /* ARAXmlParsingService.swift in Sources */,
+				D0501C3A1EA3ED8C00058B62 /* ARAApiService.swift in Sources */,
+				D0501C3F1EA3EFE200058B62 /* UIImageView+ImageDownloader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D0501C251EA3EC6000058B62 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D0501C261EA3EC6000058B62 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D0501C2A1EA3EC6000058B62 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -299,6 +363,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D0501C451EA3FD7200058B62 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D0501C461EA3FD7200058B62 /* Model.xcdatamodel */,
+			);
+			currentVersion = D0501C461EA3FD7200058B62 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D0501C161EA3EC5E00058B62 /* Project object */;
 }
