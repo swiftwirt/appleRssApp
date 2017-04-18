@@ -16,12 +16,11 @@ enum APIResult<T>
 
 class ARAApiService {
 
-    let restApiService = ARARestApiService()
+    let xmlApiService = ARAXMLApiService()
     
-    func getRSS(with url:URL, completionHandler: @escaping (APIResult<Any>) -> Void)
+    func getXML(with completionHandler: @escaping (APIResult<Any>) -> Void)
     {
-        restApiService.getRSS(with: url, completionHandler: completionHandler)
+        xmlApiService.getXML(with: completionHandler)
     }
-    
-    
+
 }
