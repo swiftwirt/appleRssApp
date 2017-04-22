@@ -45,9 +45,7 @@ class ARALibraryService {
                     } catch {
                         fatalError()
                     }
-            } else {
-                print("***** Ups! Have identical titles! Previous will be overwritten!!!")
-            }
+                }
             } catch {
                 fatalError()
             }

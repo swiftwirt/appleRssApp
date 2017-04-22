@@ -26,6 +26,7 @@ class ARAXMLParserService: NSObject, XMLParserDelegate {
     }
     
     fileprivate var currentElement = String()
+    fileprivate var handeledTitle = String()
     fileprivate var itemDictionary = [String:String]()
     fileprivate var allItems = [[String:Any]]()
     
@@ -60,8 +61,11 @@ class ARAXMLParserService: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, foundCharacters string: String)
     {
         switch currentElement {
-            case XMLElementKey.title.rawValue:
-                itemDictionary[XMLElementKey.title.rawValue] = string
+            case XMLElementKey.title.rawValue:                
+                let index = string.startIndex
+                handeledTitle = string[index] != "’" ? string : handeledTitle + string
+                itemDictionary[XMLElementKey.title.rawValue] = handeledTitle
+                print(string)
             case XMLElementKey.link.rawValue:
                 itemDictionary[XMLElementKey.link.rawValue] = string
             case XMLElementKey.description.rawValue:
