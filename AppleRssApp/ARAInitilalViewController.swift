@@ -14,6 +14,7 @@ class ARAInitilalViewController: CoreDataTableViewController, ARAXMLParserServic
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchedResultsController = applicationManager.apiService.getFetchedResultsController()
         // Here we're getting XML file from remote
         applicationManager.apiService.getXML() { (result) in
             switch result {
@@ -24,16 +25,6 @@ class ARAInitilalViewController: CoreDataTableViewController, ARAXMLParserServic
                 let parsingService = self.applicationManager.xmlParserService
                 parsingService.delegate = self
                 parsingService.beginParsing(data)
-//                parsingService.xmlParserResult = { [weak self] (result) in
-//                    guard self != nil else { return }
-//                    switch result {
-//                    case .success(let value):
-//                        // Updating SQLite 
-//                        print(value)
-//                    case .failure(let error):
-//                        print(error)
-//                    }
-//                }
             case .failure(let error):
                 print("fi - \(error)")
             }
@@ -43,10 +34,20 @@ class ARAInitilalViewController: CoreDataTableViewController, ARAXMLParserServic
     // MARK: - ARAXMLParserServiceDelegate
     
     func didFinishParsing(with result: [[String : Any]]) {
+        for dictionary in result {
+            applicationManager.apiService.updateLibrary(with: dictionary)
+        }
         print(result)
     }
     
     func didFailParsing(with error: Error) {
         print(error)
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RssItemCell", for: indexPath)
+        let item = fetchedResultsController?.object(at: indexPath) as! RssItem
+        cell.textLabel?.text = item.title
+        return cell
     }
 }

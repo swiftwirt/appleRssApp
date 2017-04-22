@@ -13,14 +13,48 @@ let MyManagedObjectContextSaveDidFailNotification = "MyManagedObjectContextSaveD
 
     func fatalCoreDataError(error: Error)
     {
-    print("*** Fatal error: \(error)")
-    NotificationCenter.default.post(name: NSNotification.Name(rawValue: MyManagedObjectContextSaveDidFailNotification), object: nil)
+        print("*** Fatal error: \(error)")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: MyManagedObjectContextSaveDidFailNotification), object: nil)
     }
 
 class ARALibraryService {
     
+    func getFetchedResultsController() -> NSFetchedResultsController<NSFetchRequestResult> {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        let entity = NSEntityDescription.entity(forEntityName: "RssItem", in: managedObjectContext)
+        let sortDescriptor = NSSortDescriptor(key: "pubDate", ascending: true)
+        fetchRequest.entity = entity
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+    }
+    
+    func updateLibraryWith(_ dictionary: [String: Any])
+    {
+        let predicate = NSPredicate(format: "title == %@", dictionary["title"] as! String)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        let entity = NSEntityDescription.entity(forEntityName: "RssItem", in: managedObjectContext)
+        fetchRequest.entity = entity
+        fetchRequest.predicate = predicate
+        do {
+            let result = try managedObjectContext.fetch(fetchRequest) as! [RssItem]
+            if result.count == 0 {
+                let item = NSManagedObject(entity: entity!, insertInto: managedObjectContext) as! RssItem
+                item.title = dictionary["title"] as! String?
+                    do {
+                        try managedObjectContext.save()
+                    } catch {
+                        fatalError()
+                    }
+            } else {
+                print("***** Ups! Have identical titles! Previous will be overwritten!!!")
+            }
+            } catch {
+                fatalError()
+            }
+    }
+    
     //MARK: - Core Data Stack
-    lazy var managedObjectContext: NSManagedObjectContext = {
+    fileprivate lazy var managedObjectContext: NSManagedObjectContext = {
         guard let modelURL = Bundle.main.url(forResource: "Model", withExtension: "momd") else {
             fatalError("Could not find data model in app bundle")
         }

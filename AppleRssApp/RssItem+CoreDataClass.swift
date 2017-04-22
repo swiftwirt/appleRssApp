@@ -10,7 +10,6 @@
 import Foundation
 import CoreData
 
-@objc(RssItem)
 public class RssItem: NSManagedObject {
 
 }

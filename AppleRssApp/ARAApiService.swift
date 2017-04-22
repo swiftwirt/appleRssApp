@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 enum APIResult<T>
 {
@@ -16,11 +17,21 @@ enum APIResult<T>
 
 class ARAApiService {
 
-    let xmlApiService = ARAXMLApiService()
+    fileprivate let xmlApiService = ARAXMLApiService()
+    fileprivate let libraryService = ARALibraryService()
     
     func getXML(with completionHandler: @escaping (APIResult<Any>) -> Void)
     {
         xmlApiService.getXML(with: completionHandler)
+    }
+    
+    func updateLibrary(with dictionary: [String: Any])
+    {
+        libraryService.updateLibraryWith(dictionary)
+    }
+    
+    func getFetchedResultsController() -> NSFetchedResultsController<NSFetchRequestResult> {
+        return libraryService.getFetchedResultsController()
     }
 
 }

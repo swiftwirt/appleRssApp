@@ -20,6 +20,7 @@ class ARAXMLParserService: NSObject, XMLParserDelegate {
         case title = "title"
         case link = "link"
         case description = "description"
+        case content = "content" // Add to omit system reserved names duplication
         case pubDate = "pubDate"
         case xmlDataFinish = "rss"
     }
@@ -29,12 +30,6 @@ class ARAXMLParserService: NSObject, XMLParserDelegate {
     fileprivate var allItems = [[String:Any]]()
     
     weak var delegate: ARAXMLParserServiceDelegate?
-    
-    convenience init(with data: Data)
-    {
-        self.init()
-        beginParsing(data)
-    }
     
     func beginParsing(_ data: Data)
     {
@@ -46,7 +41,6 @@ class ARAXMLParserService: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String])
     {
         currentElement = elementName
-        print(currentElement)
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
@@ -60,7 +54,6 @@ class ARAXMLParserService: NSObject, XMLParserDelegate {
             default:
                 break
         }
-        print(currentElement)
         currentElement = ""
     }
     
@@ -72,7 +65,7 @@ class ARAXMLParserService: NSObject, XMLParserDelegate {
             case XMLElementKey.link.rawValue:
                 itemDictionary[XMLElementKey.link.rawValue] = string
             case XMLElementKey.description.rawValue:
-                itemDictionary[XMLElementKey.description.rawValue] = string
+                itemDictionary[XMLElementKey.content.rawValue] = string
             case XMLElementKey.pubDate.rawValue:
                 itemDictionary[XMLElementKey.pubDate.rawValue] = string
         default:

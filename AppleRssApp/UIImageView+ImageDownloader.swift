@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIImageView {
+extension UIImage {
     
     func loadImageWithURL(url: URL) -> URLSessionDownloadTask
     {
@@ -17,10 +17,9 @@ extension UIImageView {
             if error == nil, let url = url {
                 do {
                     let data = try Data(contentsOf: url)
-                    let image = UIImage(data: data)
                     DispatchQueue.main.async() {
-                        if let strongSelf = self {
-                            strongSelf.image = image
+                        if self != nil, let image = UIImage(data: data) {
+                            self! = image
                         }
                     }
                 } catch {
