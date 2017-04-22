@@ -8,20 +8,27 @@
 
 import UIKit
 
+protocol ARAXMLParserServiceDelegate: class {
+    func didFinishParsing(with result: [[String:Any]])
+    func didFailParsing(with error: Error)
+}
+
 class ARAXMLParserService: NSObject, XMLParserDelegate {
    
-    enum XMLElement: String {
+    enum XMLElementKey: String {
+        case item = "item"
         case title = "title"
         case link = "link"
         case description = "description"
         case pubDate = "pubDate"
+        case xmlDataFinish = "rss"
     }
     
-    fileprivate var parser = XMLParser()
     fileprivate var currentElement = String()
-    fileprivate var item = RssItem()
+    fileprivate var itemDictionary = [String:String]()
+    fileprivate var allItems = [[String:Any]]()
     
-    var xmlParserResult: ((APIResult<Any>) -> ())?
+    weak var delegate: ARAXMLParserServiceDelegate?
     
     convenience init(with data: Data)
     {
@@ -29,35 +36,45 @@ class ARAXMLParserService: NSObject, XMLParserDelegate {
         beginParsing(data)
     }
     
-    fileprivate func beginParsing(_ data: Data)
+    func beginParsing(_ data: Data)
     {
-        parser = XMLParser(data: data)
+        let parser = XMLParser(data: data)
         parser.delegate = self
         parser.parse()
     }
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String])
     {
-        currentElement=elementName;
+        currentElement = elementName
+        print(currentElement)
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
     {
-        currentElement="";
+        switch elementName {
+            case XMLElementKey.item.rawValue:
+                allItems.append(itemDictionary)
+                itemDictionary = [String:String]()
+            case XMLElementKey.xmlDataFinish.rawValue:
+                delegate?.didFinishParsing(with: allItems)
+            default:
+                break
+        }
+        print(currentElement)
+        currentElement = ""
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String)
     {
-        switch string {
-            case XMLElement.title.rawValue:
-                item.title = string
-            case XMLElement.link.rawValue:
-                item.link = string
-            case XMLElement.description.rawValue:
-                item.content = string
-            case XMLElement.pubDate.rawValue:
-                item.pubDate = string
-                xmlParserResult?(APIResult.success(item))
+        switch currentElement {
+            case XMLElementKey.title.rawValue:
+                itemDictionary[XMLElementKey.title.rawValue] = string
+            case XMLElementKey.link.rawValue:
+                itemDictionary[XMLElementKey.link.rawValue] = string
+            case XMLElementKey.description.rawValue:
+                itemDictionary[XMLElementKey.description.rawValue] = string
+            case XMLElementKey.pubDate.rawValue:
+                itemDictionary[XMLElementKey.pubDate.rawValue] = string
         default:
             break
         }
@@ -66,6 +83,6 @@ class ARAXMLParserService: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error)
     {
         print("failure error: ", parseError)
-        xmlParserResult?(APIResult.failure(parseError))
+        delegate?.didFailParsing(with: parseError)
     }
 }

@@ -23,9 +23,9 @@ class ARAApplicationManager {
         return service
     }()
     
-    func startXmlParserService(with data: Data) -> ARAXMLParserService {
-        let service = ARAXMLParserService(with: data)
+    lazy var xmlParserService: ARAXMLParserService = {
+        let service = ARAXMLParserService()
         return service
-    }
+    }()
 
 }

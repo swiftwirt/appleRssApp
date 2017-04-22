@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ARAInitilalViewController: CoreDataTableViewController {
+class ARAInitilalViewController: CoreDataTableViewController, ARAXMLParserServiceDelegate {
     
     let applicationManager = ARAApplicationManager.instance()
 
@@ -21,19 +21,32 @@ class ARAInitilalViewController: CoreDataTableViewController {
                 print("fi - \(value)")
                 guard let data = value as? Data else { return }
                 // Parsing XML
-                let parsingService = self.applicationManager.startXmlParserService(with: data)
-                parsingService.xmlParserResult = { (result) in
-                    switch result {
-                    case .success(let value):
-                        // Updating SQLite 
-                        print(value)
-                    case .failure(let error):
-                        print(error)
-                    }
-                }
+                let parsingService = self.applicationManager.xmlParserService
+                parsingService.delegate = self
+                parsingService.beginParsing(data)
+//                parsingService.xmlParserResult = { [weak self] (result) in
+//                    guard self != nil else { return }
+//                    switch result {
+//                    case .success(let value):
+//                        // Updating SQLite 
+//                        print(value)
+//                    case .failure(let error):
+//                        print(error)
+//                    }
+//                }
             case .failure(let error):
                 print("fi - \(error)")
             }
         }
+    }
+    
+    // MARK: - ARAXMLParserServiceDelegate
+    
+    func didFinishParsing(with result: [[String : Any]]) {
+        print(result)
+    }
+    
+    func didFailParsing(with error: Error) {
+        print(error)
     }
 }
