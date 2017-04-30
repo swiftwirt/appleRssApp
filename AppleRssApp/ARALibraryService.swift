@@ -19,13 +19,14 @@ let MyManagedObjectContextSaveDidFailNotification = "MyManagedObjectContextSaveD
 
 class ARALibraryService {
     
-    func getFetchedResultsController() -> NSFetchedResultsController<NSFetchRequestResult> {
+    func getFetchedResultsController() -> NSFetchedResultsController<NSFetchRequestResult>
+    {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         let entity = NSEntityDescription.entity(forEntityName: "RssItem", in: managedObjectContext)
         let sortDescriptor = NSSortDescriptor(key: "pubDate", ascending: true)
         fetchRequest.entity = entity
         fetchRequest.sortDescriptors = [sortDescriptor]
-        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: "pubDate", cacheName: nil)
     }
     
     func updateLibraryWith(_ dictionary: [String: Any])
@@ -39,7 +40,10 @@ class ARALibraryService {
             let result = try managedObjectContext.fetch(fetchRequest) as! [RssItem]
             if result.count == 0 {
                 let item = NSManagedObject(entity: entity!, insertInto: managedObjectContext) as! RssItem
+                // TODO: - replace literals with structs
                 item.title = dictionary["title"] as! String?
+                item.content = dictionary["content"] as! String?
+                item.pubDate = dictionary["pubDate"] as! String?
                     do {
                         try managedObjectContext.save()
                     } catch {

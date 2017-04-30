@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D04E4E071EB612B8003CA4AD /* ARADetailsScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D04E4E061EB612B8003CA4AD /* ARADetailsScreen.storyboard */; };
+		D04E4E091EB61712003CA4AD /* ARADetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04E4E081EB61712003CA4AD /* ARADetailsViewController.swift */; };
+		D04E4E0C1EB62342003CA4AD /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04E4E0B1EB62342003CA4AD /* Details.swift */; };
+		D04E4E0E1EB63D1C003CA4AD /* ARARssItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04E4E0D1EB63D1C003CA4AD /* ARARssItemCell.swift */; };
 		D0501C221EA3EC5F00058B62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0501C211EA3EC5F00058B62 /* AppDelegate.swift */; };
 		D0501C291EA3EC6000058B62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0501C281EA3EC6000058B62 /* Assets.xcassets */; };
 		D0501C2C1EA3EC6000058B62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0501C2A1EA3EC6000058B62 /* LaunchScreen.storyboard */; };
@@ -25,6 +29,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D04E4E061EB612B8003CA4AD /* ARADetailsScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ARADetailsScreen.storyboard; sourceTree = "<group>"; };
+		D04E4E081EB61712003CA4AD /* ARADetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARADetailsViewController.swift; sourceTree = "<group>"; };
+		D04E4E0B1EB62342003CA4AD /* Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
+		D04E4E0D1EB63D1C003CA4AD /* ARARssItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARARssItemCell.swift; sourceTree = "<group>"; };
 		D0501C1E1EA3EC5F00058B62 /* AppleRssApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleRssApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0501C211EA3EC5F00058B62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0501C281EA3EC6000058B62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +63,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D04E4E051EB61284003CA4AD /* Details Screen */ = {
+			isa = PBXGroup;
+			children = (
+				D04E4E061EB612B8003CA4AD /* ARADetailsScreen.storyboard */,
+				D04E4E081EB61712003CA4AD /* ARADetailsViewController.swift */,
+			);
+			name = "Details Screen";
+			sourceTree = "<group>";
+		};
+		D04E4E0A1EB6232C003CA4AD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D04E4E0B1EB62342003CA4AD /* Details.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		D0501C151EA3EC5E00058B62 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +99,7 @@
 		D0501C201EA3EC5F00058B62 /* AppleRssApp */ = {
 			isa = PBXGroup;
 			children = (
+				D04E4E0A1EB6232C003CA4AD /* Models */,
 				D0501C441EA3FD4D00058B62 /* Core Data */,
 				D0501C3D1EA3EFC000058B62 /* Extensions */,
 				D0501C381EA3ED1000058B62 /* Presentation */,
@@ -117,6 +143,7 @@
 		D0501C381EA3ED1000058B62 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				D04E4E051EB61284003CA4AD /* Details Screen */,
 				D0B4AA631EA554BD0054C776 /* Initial Screen */,
 			);
 			name = Presentation;
@@ -146,6 +173,7 @@
 			children = (
 				D0B4AA5F1EA54B2A0054C776 /* ARAInitialScreen.storyboard */,
 				D0B4AA611EA550B20054C776 /* ARAInitilalViewController.swift */,
+				D04E4E0D1EB63D1C003CA4AD /* ARARssItemCell.swift */,
 			);
 			name = "Initial Screen";
 			sourceTree = "<group>";
@@ -210,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0B4AA601EA54B2A0054C776 /* ARAInitialScreen.storyboard in Resources */,
+				D04E4E071EB612B8003CA4AD /* ARADetailsScreen.storyboard in Resources */,
 				D0501C2C1EA3EC6000058B62 /* LaunchScreen.storyboard in Resources */,
 				D0501C291EA3EC6000058B62 /* Assets.xcassets in Resources */,
 			);
@@ -224,12 +253,15 @@
 			files = (
 				D0501C221EA3EC5F00058B62 /* AppDelegate.swift in Sources */,
 				D0501C4A1EA3FE6C00058B62 /* RssItem+CoreDataClass.swift in Sources */,
+				D04E4E091EB61712003CA4AD /* ARADetailsViewController.swift in Sources */,
 				D0501C4B1EA3FE6C00058B62 /* RssItem+CoreDataProperties.swift in Sources */,
 				D06CDE231EA69E7E0027E4DB /* ARAXMLParserService.swift in Sources */,
 				D0B4AA621EA550B20054C776 /* ARAInitilalViewController.swift in Sources */,
+				D04E4E0C1EB62342003CA4AD /* Details.swift in Sources */,
 				D0501C3C1EA3EDD400058B62 /* ARAXMLApiService.swift in Sources */,
 				D0501C411EA3FBB600058B62 /* ARALibraryService.swift in Sources */,
 				D0501C471EA3FD7200058B62 /* Model.xcdatamodeld in Sources */,
+				D04E4E0E1EB63D1C003CA4AD /* ARARssItemCell.swift in Sources */,
 				D0501C3A1EA3ED8C00058B62 /* ARAApiService.swift in Sources */,
 				D0501C4D1EA411CC00058B62 /* CoreDataTableViewController.swift in Sources */,
 				D0B4AA671EA555420054C776 /* ARAApplicationManager.swift in Sources */,

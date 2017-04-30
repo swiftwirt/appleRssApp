@@ -11,11 +11,26 @@ import UIKit
 class ARAInitilalViewController: CoreDataTableViewController, ARAXMLParserServiceDelegate {
     
     let applicationManager = ARAApplicationManager.instance()
+    
+    struct SegueIdentifier {
+        static let details = "SegueGoToDetails"
+        
+        private init() {}
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Hook up request controller
         fetchedResultsController = applicationManager.apiService.getFetchedResultsController()
         // Here we're getting XML file from remote
+        getXMLData()
+
+        tableView.estimatedRowHeight = 80.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    fileprivate func getXMLData()
+    {
         applicationManager.apiService.getXML() { (result) in
             switch result {
             case .success(let value):
@@ -37,7 +52,6 @@ class ARAInitilalViewController: CoreDataTableViewController, ARAXMLParserServic
         for dictionary in result {
             applicationManager.apiService.updateLibrary(with: dictionary)
         }
-        print(result)
     }
     
     func didFailParsing(with error: Error) {
@@ -45,9 +59,29 @@ class ARAInitilalViewController: CoreDataTableViewController, ARAXMLParserServic
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RssItemCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RssItemCell", for: indexPath) as! ARARssItemCell
         let item = fetchedResultsController?.object(at: indexPath) as! RssItem
-        cell.textLabel?.text = item.title
+        cell.titleLabel.text = item.title
+        cell.contentLabel.text = item.content
+        cell.dateLabel.text = item.pubDate
         return cell
+    }
+    
+    // MARK: - Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier! {
+        case SegueIdentifier.details:
+            if let destinationViewController = segue.destination as? ARADetailsViewController {
+                guard let cell = sender as? ARARssItemCell else { return }
+                var details = Details()
+                details.title = cell.titleLabel.text!
+                details.content = cell.contentLabel.text!
+                details.date = cell.dateLabel.text!
+                destinationViewController.details = details
+            }
+        default:
+            break
+        }
     }
 }

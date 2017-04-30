@@ -13,18 +13,58 @@
         <scene sceneID="sdl-71-P92">
             <objects>
                 <tableViewController id="FEL-Ba-fq5" customClass="ARAInitilalViewController" customModule="AppleRssApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="98x-1D-zUd">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" id="98x-1D-zUd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RssItemCell" id="R9h-3o-Suk">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RssItemCell" rowHeight="72" id="R9h-3o-Suk" customClass="ARARssItemCell" customModule="AppleRssApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R9h-3o-Suk" id="VVp-Eb-Xfe">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HoN-y9-FfH">
+                                            <rect key="frame" x="8" y="4" width="359" height="47.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titleLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MXB-yb-wsQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="contentLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umg-cw-FMn">
+                                                    <rect key="frame" x="0.0" y="24" width="359" height="23.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dateLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmu-mA-nKX">
+                                            <rect key="frame" x="8" y="51.5" width="359" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="zmu-mA-nKX" secondAttribute="trailing" constant="8" id="7PD-mN-sOZ"/>
+                                        <constraint firstItem="zmu-mA-nKX" firstAttribute="top" secondItem="HoN-y9-FfH" secondAttribute="bottom" id="A1P-qf-PI4"/>
+                                        <constraint firstAttribute="bottom" secondItem="zmu-mA-nKX" secondAttribute="bottom" constant="4" id="qgo-sG-AOS"/>
+                                        <constraint firstItem="zmu-mA-nKX" firstAttribute="leading" secondItem="VVp-Eb-Xfe" secondAttribute="leading" constant="8" id="s00-ie-xrH"/>
+                                        <constraint firstItem="HoN-y9-FfH" firstAttribute="leading" secondItem="VVp-Eb-Xfe" secondAttribute="leading" constant="8" id="v7R-vK-KmT"/>
+                                        <constraint firstItem="HoN-y9-FfH" firstAttribute="top" secondItem="VVp-Eb-Xfe" secondAttribute="top" constant="4" id="wCW-LN-XWW"/>
+                                        <constraint firstAttribute="trailing" secondItem="HoN-y9-FfH" secondAttribute="trailing" constant="8" id="y78-bV-s3N"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="contentLabel" destination="umg-cw-FMn" id="fXv-zS-h7u"/>
+                                    <outlet property="dateLabel" destination="zmu-mA-nKX" id="7T6-jg-oUG"/>
+                                    <outlet property="titleLabel" destination="MXB-yb-wsQ" id="NQV-nB-a5T"/>
+                                    <segue destination="46w-o5-NTi" kind="show" identifier="SegueGoToDetails" id="CH0-I9-RTB"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -36,7 +76,15 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CvL-Yf-keM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="372" y="116"/>
+            <point key="canvasLocation" x="372" y="115.59220389805098"/>
+        </scene>
+        <!--ARADetailsScreen-->
+        <scene sceneID="IWP-vE-Rnw">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ARADetailsScreen" id="46w-o5-NTi" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hRO-dJ-hri" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="940" y="115"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jkM-aF-cQw">
