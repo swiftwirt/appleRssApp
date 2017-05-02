@@ -27,6 +27,7 @@ class ARAXMLParserService: NSObject, XMLParserDelegate {
     
     fileprivate var currentElement = String()
     fileprivate var handeledTitle = String()
+    fileprivate var handeledContent = String()
     fileprivate var itemDictionary = [String:String]()
     fileprivate var allItems = [[String:Any]]()
     
@@ -49,7 +50,7 @@ class ARAXMLParserService: NSObject, XMLParserDelegate {
         switch elementName {
             case XMLElementKey.item.rawValue:
                 allItems.append(itemDictionary)
-                itemDictionary = [String:String]()
+                resetHandeledFields()
             case XMLElementKey.xmlDataFinish.rawValue:
                 delegate?.didFinishParsing(with: allItems)
             default:
@@ -61,15 +62,15 @@ class ARAXMLParserService: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, foundCharacters string: String)
     {
         switch currentElement {
-            case XMLElementKey.title.rawValue:                
-                let index = string.startIndex
-                handeledTitle = string[index] != "’" ? string : handeledTitle + string
+            case XMLElementKey.title.rawValue:
+                handeledTitle += string
                 itemDictionary[XMLElementKey.title.rawValue] = handeledTitle
                 print(string)
             case XMLElementKey.link.rawValue:
                 itemDictionary[XMLElementKey.link.rawValue] = string
             case XMLElementKey.description.rawValue:
-                itemDictionary[XMLElementKey.content.rawValue] = string
+                handeledContent += string
+                itemDictionary[XMLElementKey.content.rawValue] = handeledContent
             case XMLElementKey.pubDate.rawValue:
                 itemDictionary[XMLElementKey.pubDate.rawValue] = string
         default:
@@ -81,5 +82,12 @@ class ARAXMLParserService: NSObject, XMLParserDelegate {
     {
         print("failure error: ", parseError)
         delegate?.didFailParsing(with: parseError)
+    }
+    
+    fileprivate func resetHandeledFields()
+    {
+        itemDictionary = [String:String]()
+        handeledContent = String()
+        handeledTitle = String()
     }
 }
