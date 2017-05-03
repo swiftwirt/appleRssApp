@@ -74,11 +74,9 @@ class ARAInitilalViewController: CoreDataTableViewController, ARAXMLParserServic
         case SegueIdentifier.details:
             if let destinationViewController = segue.destination as? ARADetailsViewController {
                 guard let cell = sender as? ARARssItemCell else { return }
-                var details = Details()
-                details.title = cell.titleLabel.text!
-                details.content = cell.contentLabel.text!
-                details.date = cell.dateLabel.text!
-                destinationViewController.details = details
+                let indexPath = tableView.indexPath(for: cell)
+                let item = fetchedResultsController?.object(at: indexPath!) as? RssItem
+                destinationViewController.item = item
             }
         default:
             break

@@ -44,6 +44,7 @@ class ARALibraryService {
                 item.title = dictionary["title"] as! String?
                 item.content = dictionary["content"] as! String?
                 item.pubDate = dictionary["pubDate"] as! String?
+                item.link = dictionary["link"] as! String?
                     do {
                         try managedObjectContext.save()
                     } catch {

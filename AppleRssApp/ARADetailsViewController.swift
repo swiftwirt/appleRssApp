@@ -14,7 +14,10 @@ class ARADetailsViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     
-    var details: Details!
+    var item: RssItem!
+    
+    fileprivate var downloadTask: URLSessionDownloadTask?
+    fileprivate var applicationManager = ARAApplicationManager.instance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,12 +40,31 @@ class ARADetailsViewController: UIViewController {
         imageView.layer.borderWidth = 1.0
         imageView.layer.cornerRadius = imageView.frame.size.width / 2
         detailsTextView.addSubview(imageView)
+        
+        if let link = item.link, let url = URL(string: "https://lh3.googleusercontent.com/-OyqHvKz17lg/WDwiXRUFjHI/AAAAAAAAAC8/8c5UgM30NogAIg0M7V2P1NEqboo5mnlKwCEw/w140-h140-p/Screen%2BShot%2B2016-11-28%2Bat%2B2.25.36%2BPM.png") {
+            downloadTask = applicationManager.apiService.loadImageWithURL(url: url) { [weak self] (result) in
+                guard let strongSelf = self else { return }
+                switch result {
+                case .success(let value):
+                    guard let image = value as? UIImage else { return }
+                    DispatchQueue.main.async {
+                        imageView.image = image
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
     }
     
     fileprivate func handleContent()
     {
-        titleLabel.text = details.title
-        dateLabel.text = details.date
-        detailsTextView.text = details.content
+        titleLabel.text = item.title
+        dateLabel.text = item.pubDate
+        detailsTextView.text = item.content
+    }
+    
+    deinit {
+        downloadTask?.cancel()
     }
 }

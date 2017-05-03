@@ -23,5 +23,28 @@ class ARAXMLApiService: NSObject {
         } catch {
             completionHandler(APIResult.failure(error))
         }
-    }    
+    }
+    
+    func loadImageWithURL(url: URL, completionHandler: @escaping (APIResult<Any>) -> Void) -> URLSessionDownloadTask
+    {
+        let session = URLSession.shared
+        let downloadTask = session.downloadTask(with: url, completionHandler: { [weak self] url, response, error in
+            if error == nil, let url = url {
+                do {
+                    let data = try Data(contentsOf: url)
+                    DispatchQueue.main.async() {
+                        if self != nil, let image = UIImage(data: data) {
+                            completionHandler(APIResult.success(image))
+                        }
+                    }
+                } catch {
+                    print("***** Error from loadImageWithURL!")
+                    completionHandler(APIResult.failure(error))
+                }
+                
+            }
+        })
+        downloadTask.resume()
+        return downloadTask
+    }
 }

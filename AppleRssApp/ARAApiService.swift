@@ -33,5 +33,10 @@ class ARAApiService {
     func getFetchedResultsController() -> NSFetchedResultsController<NSFetchRequestResult> {
         return libraryService.getFetchedResultsController()
     }
+    
+    func loadImageWithURL(url: URL, completionHandler: @escaping (APIResult<Any>) -> Void) -> URLSessionDownloadTask
+    {
+        return xmlApiService.loadImageWithURL(url: url, completionHandler: completionHandler)
+    }
 
 }
